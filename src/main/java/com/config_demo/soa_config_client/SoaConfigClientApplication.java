@@ -14,4 +14,5 @@ public class SoaConfigClientApplication {
 
 }
 
-//启动后请访问：http://localhost:7777/from
+//如果profile的值是 dev, 启动后请访问： http://localhost:7777/from
+//如果profile的值是 prod, 启动后请访问：http://localhost:7950/from
