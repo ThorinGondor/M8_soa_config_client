@@ -14,3 +14,4 @@ public class SoaConfigClientApplication {
 
 }
 
+//启动后请访问：http://localhost:7777/from
