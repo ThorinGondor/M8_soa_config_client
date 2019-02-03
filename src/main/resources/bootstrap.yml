@@ -1,7 +1,25 @@
+# M9 为了能够实时更新配置，需要暴露端点：bus-refresh
+management:
+  endpoint:
+    bus-refresh:
+      enabled: true
+    bus-env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
 spring:
   cloud:
-    config:
-      name: spring-cloud-config-client
-      profile: prod
-      uri: http://localhost:7001/
-      label: master
+    config: # M8 从远程的Git仓库中获取配置，其中 7001 是配置中心的端口
+      name: spring-cloud-config-client # 自定义本服务注册到服务治理中心的id
+      profile: prod                    # 激活方式 另有dev等模式
+      uri: http://localhost:7001/      # 指定服务器的uri
+      label: master                    # Git默认分支
+  rabbitmq: # M9 利用rabbitMQ Manager，可以通过 Spring Cloud Bus 实时地更新配置的变化
+    host: localhost                    # host
+    port: 5672                         # rabbitMQ运行端口，rabbitMQ Server(E:\ProgramFiles\RabbitMQ Server\rabbitmq_server-3.7.11\sbin\rabbitmq-server.bat)，启动后请访问：http://localhost:15672/#/
+    username: StephenCurry             # rabbitMQ用户名
+    password: 8686886wscq              # rabbitMQ用户密码
